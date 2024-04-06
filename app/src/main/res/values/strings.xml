@@ -7,8 +7,8 @@
     <string name="price_placeholder">Price: %sk</string>
     <string name="car_image">Car Image</string>
     <string name="menu_icon">Menu Icon</string>
-    <string name="any_make">any make</string>
-    <string name="any_model">any model</string>
+    <string name="any_make">Any make</string>
+    <string name="any_model">Any model</string>
     <string name="bullet">bullet</string>
     <string name="pros_cons">Pros Cons</string>
 </resources>

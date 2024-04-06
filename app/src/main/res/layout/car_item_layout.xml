@@ -52,6 +52,15 @@
             app:layout_constraintTop_toBottomOf="@+id/car_make"
             tools:text="Price 120K" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/starRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/car_price"
+            app:layout_constraintStart_toStartOf="@+id/car_price"
+            app:layout_constraintTop_toBottomOf="@+id/car_price" />
+
 
         <LinearLayout
             android:id="@+id/detailsLayout"

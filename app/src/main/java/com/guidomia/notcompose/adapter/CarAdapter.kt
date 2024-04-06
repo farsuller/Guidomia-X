@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
@@ -30,6 +31,10 @@ class CarAdapter(private var carList: List<CarModel>) : RecyclerView.Adapter<Car
 
         holder.carImage.setImageResource(cars.find { it.model == carItem.model || it.make == carItem.make }!!.imagePath)
         holder.carMake.text = carItem.make
+
+        val starAdapter = StarAdapter(carItem.rating)
+        holder.carRate.adapter = starAdapter
+        holder.carRate.layoutManager = LinearLayoutManager(holder.itemView.context,LinearLayoutManager.HORIZONTAL, false)
 
         val formattedPrice = format.format(carItem.marketPrice / 1000)
         val priceString = holder.itemView.context.getString(R.string.price_placeholder, formattedPrice)
@@ -63,10 +68,10 @@ class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val carImage: ImageView = itemView.findViewById(R.id.car_image)
     val carMake: TextView = itemView.findViewById(R.id.car_make)
     val carPrice: TextView = itemView.findViewById(R.id.car_price)
+    val carRate: RecyclerView = itemView.findViewById(R.id.starRecyclerView)
 
     val prosRecyclerView: RecyclerView = itemView.findViewById(R.id.prosRecyclerView)
     val consRecyclerView: RecyclerView = itemView.findViewById(R.id.consRecyclerView)
-
 
     private val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
     private val detailsLayout: LinearLayout = itemView.findViewById(R.id.detailsLayout)
@@ -81,6 +86,7 @@ class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 detailsLayout.visibility = View.VISIBLE
             }
         }
+        carRate.visibility = View.VISIBLE
     }
 }
 

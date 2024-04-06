@@ -4,6 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FFFC6016</color>
     <color name="light_gray">#FFD5D5D5</color>
-    <color name="lighter_gray">#E8E6E6</color>
+    <color name="lighter_gray">#F1EEEE</color>
     <color name="dark_gray">#FF858585</color>
 </resources>
