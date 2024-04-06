@@ -4,7 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.guidomia.notcompose.R
@@ -15,7 +17,7 @@ import com.guidomia.notcompose.util.format
 
 class CarAdapter(private var carList: List<CarModel>) : RecyclerView.Adapter<CarViewHolder>() {
 
-    val cars = Cars.entries.toTypedArray()
+    private val cars = Cars.entries.toTypedArray()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CarViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.car_item_layout, parent, false)
@@ -48,6 +50,17 @@ class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val carImage: ImageView = itemView.findViewById(R.id.car_image)
     val carMake: TextView = itemView.findViewById(R.id.car_make)
     val carPrice: TextView = itemView.findViewById(R.id.car_price)
+    val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
+    val detailsLayout: LinearLayout = itemView.findViewById(R.id.detailsLayout)
+    init {
+        constraintLayout.setOnClickListener {
+            if (detailsLayout.visibility == View.VISIBLE) {
+                detailsLayout.visibility = View.GONE
+            } else {
+                detailsLayout.visibility = View.VISIBLE
+            }
+        }
+    }
 }
 
 private class CarDiffCallback(private val oldList: List<CarModel>, private val newList: List<CarModel>) : DiffUtil.Callback() {
