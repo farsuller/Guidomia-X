@@ -3,10 +3,12 @@ package com.guidomia.notcompose.util
 
 import android.content.Context
 import java.io.IOException
+import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.Locale
 
-val format: NumberFormat = NumberFormat.getNumberInstance(Locale.US)
+
+val format = DecimalFormat("#,###")
 
 fun getJsonDataFromAsset(
     context: Context,

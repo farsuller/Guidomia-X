@@ -33,16 +33,32 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/burgerIcon"
+            android:id="@+id/menuIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:layout_marginEnd="20px"
+            android:layout_marginEnd="20dp"
             android:contentDescription="Menu Icon"
             android:src="@drawable/toolbar_menu"
             app:tint="@color/white" />
 
 
     </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/car_image"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:contentDescription="Car Image"
+        android:src="@drawable/tacoma"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/car_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
