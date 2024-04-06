@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guidomia.notcompose.adapter.CarAdapter
@@ -37,6 +38,18 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.carList.observe(this) { cars ->
             adapter.updateData(cars)
+        }
+
+        viewModel.filteredCarList.observe(this) { filteredCars ->
+            adapter.updateData(filteredCars)
+        }
+
+        binding.filterMake.addTextChangedListener { text ->
+            viewModel.filterCars(text.toString(), binding.filterModel.text.toString())
+        }
+
+        binding.filterModel.addTextChangedListener { text ->
+            viewModel.filterCars(binding.filterMake.text.toString(), text.toString())
         }
     }
 }

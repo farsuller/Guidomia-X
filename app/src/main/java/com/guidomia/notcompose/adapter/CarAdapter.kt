@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.guidomia.notcompose.R
 import com.guidomia.notcompose.model.CarModel
@@ -27,7 +28,6 @@ class CarAdapter(private var carList: List<CarModel>) : RecyclerView.Adapter<Car
     override fun onBindViewHolder(holder: CarViewHolder, position: Int) {
         val carItem = carList[position]
 
-
         holder.carImage.setImageResource(cars.find { it.model == carItem.model || it.make == carItem.make }!!.imagePath)
         holder.carMake.text = carItem.make
 
@@ -35,6 +35,19 @@ class CarAdapter(private var carList: List<CarModel>) : RecyclerView.Adapter<Car
         val priceString = holder.itemView.context.getString(R.string.price_placeholder, formattedPrice)
         holder.carPrice.text = priceString
 
+        if (carItem.prosList.isEmpty())
+            holder.prosLabel.visibility = View.GONE
+
+        if (carItem.consList.isEmpty())
+            holder.consLabel.visibility = View.GONE
+
+        val prosAdapter = ProsConsAdapter(carItem.prosList.filter { it.toString().isNotBlank()})
+        holder.prosRecyclerView.adapter = prosAdapter
+        holder.prosRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
+
+        val consAdapter = ProsConsAdapter(carItem.consList.filter { it.isNotBlank()})
+        holder.consRecyclerView.adapter = consAdapter
+        holder.consRecyclerView.layoutManager = LinearLayoutManager(holder.itemView.context)
     }
 
     override fun getItemCount() = carList.size
@@ -50,8 +63,16 @@ class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     val carImage: ImageView = itemView.findViewById(R.id.car_image)
     val carMake: TextView = itemView.findViewById(R.id.car_make)
     val carPrice: TextView = itemView.findViewById(R.id.car_price)
-    val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
-    val detailsLayout: LinearLayout = itemView.findViewById(R.id.detailsLayout)
+
+    val prosRecyclerView: RecyclerView = itemView.findViewById(R.id.prosRecyclerView)
+    val consRecyclerView: RecyclerView = itemView.findViewById(R.id.consRecyclerView)
+
+
+    private val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
+    private val detailsLayout: LinearLayout = itemView.findViewById(R.id.detailsLayout)
+    val prosLabel: TextView = itemView.findViewById(R.id.prosLabel)
+    val consLabel: TextView = itemView.findViewById(R.id.consLabel)
+
     init {
         constraintLayout.setOnClickListener {
             if (detailsLayout.visibility == View.VISIBLE) {

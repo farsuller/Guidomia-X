@@ -4,9 +4,11 @@
     <string name="get_yours_now">Get your\'s now</string>
     <string name="tacoma_2021">Tacoma 2021</string>
     <string name="filter">Filter</string>
-    <string name="price_placeholder">Price: %s k</string>
+    <string name="price_placeholder">Price: %sk</string>
     <string name="car_image">Car Image</string>
     <string name="menu_icon">Menu Icon</string>
     <string name="any_make">any make</string>
     <string name="any_model">any model</string>
+    <string name="bullet">bullet</string>
+    <string name="pros_cons">Pros Cons</string>
 </resources>
